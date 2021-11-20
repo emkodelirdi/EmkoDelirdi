@@ -18,6 +18,14 @@ Credit:CreateLabel("Credit", '[['..text1..']]\n\n[['..text2..']]')
 EpicSection:CreateToggle("Auto Anubis", function(boolean)
 	_G.AnubisOn = boolean
 end)
+EpicSection:CreateButton("Collect Chests", function()
+   local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+	for _,v in pairs(game.Workspace.Chests:GetChildren()) do
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.TouchPart.CFrame
+		wait(0.2)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
+	end 
+end)
 EpicSection:CreateToggle("Auto Evil Pumpkin", function(boolean)
 
 	local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -28,6 +36,12 @@ EpicSection:CreateToggle("Auto Evil Pumpkin", function(boolean)
 	end
 	_G.DarkPumpkin = boolean
 end)
+local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+	for _,v in pairs(game.Workspace.Chests:GetChildren()) do
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.TouchPart.CFrame
+		wait(0.2)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
+	end 
 EpicSection:CreateDropdown("Autofarm", {"Off", "Psychic", "Strength", "Endurance", "All"}, 1, function(option)
 	_G.mode = option
 end)
@@ -35,7 +49,7 @@ coroutine.resume(coroutine.create(function()--autoanubis
 	while true do wait()
 		if _G.AnubisOn then
 			if not _G.ongoing then
-				if game:GetService("Workspace").Anubis.AnubisText.BillboardGui.Timer.Text =="New Quest Available!" or game:GetService("Players").LocalPlayer.PlayerGui.Quests.QuestsMenu.Main.ScrollingFrame.Anubis then
+				if game:GetService("Workspace").Anubis.AnubisText.BillboardGui.Timer.Text =="New Quest Available!" or game:GetService("Players").LocalPlayer.PlayerGui.Quests.QuestsMenu.Main.ScrollingFrame:FindFirstChild("Anubis") then
 					_G.ongoing = true
 					local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1621.34338, 56.3657684, -1843.53284)
@@ -100,7 +114,6 @@ coroutine.resume(coroutine.create(function()--autoanubis
 					game:GetService("ReplicatedStorage").Events.Quest:FireServer(unpack(args))
 					wait(1)
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-					_G.ongoing = false
 				end
 			end
 		end
