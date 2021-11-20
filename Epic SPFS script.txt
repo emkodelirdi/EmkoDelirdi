@@ -48,7 +48,6 @@ coroutine.resume(coroutine.create(function()--autoanubis
                 game:GetService("ReplicatedStorage").Events.Quest:FireServer(unpack(args))
                 wait(1)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-                wait(3610)
             end
         end
     end
