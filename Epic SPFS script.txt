@@ -1,0 +1,88 @@
+local Library = loadstring(game:HttpGet("https://pastebinp.com/raw/3gQQtaKX"))()
+_G.AnubisOn = false
+text1 = "Scripts by me, EmkoDelirdi"
+text2 = "UI lib made by coasts"
+_G.mode = "off"
+local EpicTab = Library:CreateTab("Bad SPFS Gui")
+local EpicSection= EpicTab:CreateSection("scripto")
+local Credit = EpicTab:CreateSection("credit")
+Credit:CreateLabel("Credit", '[['..text1..']]\n\n[['..text2..']]')
+EpicSection:CreateToggle("Auto Anubis", function(boolean)
+    _G.AnubisOn = boolean
+end)
+EpicSection:CreateDropdown("Autofarm", {"Off", "Psychic", "Strength", "Endurance", "All"}, 1, function(option)
+    _G.mode = option
+end)
+coroutine.resume(coroutine.create(function()--autoanubis
+    while true do wait()
+        if _G.AnubisOn then
+            if game:GetService("Workspace").Anubis.AnubisText.BillboardGui.Timer.Text =="New Quest Available!" then
+                local oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1621.34338, 56.3657684, -1843.53284)
+                local args = {
+                    [1] = "Anubis"
+                }
+                game:GetService("ReplicatedStorage").Events.Quest:FireServer(unpack(args))
+                local args = {
+                    [1] = "Endurance"
+                }
+                local args2 = {
+                    [1] = "Strength"
+                }
+                local args3 = {
+                    [1] = "Psychic"
+                }
+                game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args))
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1479.42517, 61.2854309, -1911.22461, 0.951996922, -0.0574591868, 0.300666422, 0.0746844113, 0.996140897, -0.0461038798, -0.296857029, 0.0663458481, 0.952614367)
+                wait(1)
+                game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args2))
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1615.24329, 55.3127708, -1775.54871)
+                wait(1)
+                game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args3))
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1479.42517, 61.2854309, -1911.22461, 0.951996922, -0.0574591868, 0.300666422, 0.0746844113, 0.996140897, -0.0461038798, -0.296857029, 0.0663458481, 0.952614367)
+                wait(1)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1621.34338, 56.3657684, -1843.53284)
+                local args = {
+                    [1] = "Anubis"
+                }
+                game:GetService("ReplicatedStorage").Events.Quest:FireServer(unpack(args))
+                wait(1)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
+                wait(3610)
+            end
+        end
+    end
+end))
+coroutine.resume(coroutine.create(function() --autofarm
+    while true do wait()
+        if _G.mode == "Psychic" then
+            local args = {
+                [1] = "Psychic"
+            }
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args))
+        elseif _G.mode == "Strength" then
+            local args = {
+                [1] = "Strength"
+            }
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args))
+        elseif _G.mode == "Endurance" then
+            local args = {
+                [1] = "Endurance"
+            }
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args))
+        elseif _G.mode == "All" then
+            local args = {
+                [1] = "Endurance"
+            }
+            local args2 = {
+                [1] = "Strength"
+            }
+            local args3 = {
+                [1] = "Psychic"
+            }
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args))
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args2))
+            game:GetService("ReplicatedStorage").Events.Train:FireServer(unpack(args3))
+        end
+    end
+end))
