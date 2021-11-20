@@ -18,13 +18,14 @@ Credit:CreateLabel("Credit", '[['..text1..']]\n\n[['..text2..']]')
 EpicSection:CreateToggle("Auto Anubis", function(boolean)
 	_G.AnubisOn = boolean
 end)
-EpicSection:CreateButton("Collect Chests", function()
+
+EpicSection:CreateButton("Chests", function()
    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 	for _,v in pairs(game.Workspace.Chests:GetChildren()) do
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.TouchPart.CFrame
 		wait(0.2)
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-	end 
+	end    
 end)
 EpicSection:CreateToggle("Auto Evil Pumpkin", function(boolean)
 
@@ -36,12 +37,6 @@ EpicSection:CreateToggle("Auto Evil Pumpkin", function(boolean)
 	end
 	_G.DarkPumpkin = boolean
 end)
-local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-	for _,v in pairs(game.Workspace.Chests:GetChildren()) do
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.TouchPart.CFrame
-		wait(0.2)
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-	end 
 EpicSection:CreateDropdown("Autofarm", {"Off", "Psychic", "Strength", "Endurance", "All"}, 1, function(option)
 	_G.mode = option
 end)
