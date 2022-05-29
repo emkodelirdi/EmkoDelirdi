@@ -115,9 +115,6 @@ while _G.farming do wait()
         handle:Activate()
         wait()
     end
-    if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
-            game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        end
     wait(5)
     local args = {
         [1] = "Save"
